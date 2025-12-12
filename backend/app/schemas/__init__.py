@@ -1,11 +1,10 @@
-"""
-Schemas module - Schemas Pydantic para validação de dados
-"""
 from app.schemas.card import (
     CardBase,
     CardCreate,
     CardResponse,
     CardImportRequest,
+    CardBulkImportRequest,
+    CardBulkImportResponse,
     CardSearchRequest,
     CardListResponse
 )
@@ -16,7 +15,11 @@ from app.schemas.deck import (
     DeckUpdate,
     DeckResponse,
     DeckWithCardsResponse,
-    DeckListResponse
+    DeckListResponse,
+    AddCardToDeckRequest,
+    UpdateCardQuantityRequest,
+    BulkDeckImportRequest,
+    BulkDeckImportResponse
 )
 
 __all__ = [
@@ -25,6 +28,8 @@ __all__ = [
     "CardCreate",
     "CardResponse",
     "CardImportRequest",
+    "CardBulkImportRequest",
+    "CardBulkImportResponse",
     "CardSearchRequest",
     "CardListResponse",
     # Deck schemas
@@ -35,5 +40,9 @@ __all__ = [
     "DeckResponse",
     "DeckWithCardsResponse",
     "DeckListResponse",
+    "AddCardToDeckRequest",
+    "UpdateCardQuantityRequest",
+    "BulkDeckImportRequest",
+    "BulkDeckImportResponse",
 ]
 

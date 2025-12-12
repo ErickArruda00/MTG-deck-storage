@@ -1,13 +1,8 @@
-"""
-Schemas para Cartas (Cards)
-Define a estrutura de dados para validação de cartas
-"""
 from typing import Optional, List
 from pydantic import BaseModel, Field, HttpUrl
 
 
 class CardBase(BaseModel):
-    """Schema base para carta - campos comuns"""
     name: str = Field(..., description="Nome da carta")
     scryfall_id: str = Field(..., description="ID único da carta na Scryfall (UUID)")
     oracle_id: Optional[str] = Field(None, description="ID do texto Oracle da carta (UUID)")
@@ -42,22 +37,18 @@ class CardBase(BaseModel):
 
 
 class CardCreate(CardBase):
-    """Schema para criar uma carta - herda todos os campos de CardBase"""
     pass
 
 
 class CardResponse(CardBase):
-    """Schema de resposta da API - inclui campos adicionais do MongoDB"""
     id: Optional[str] = Field(None, alias="_id", description="ID do documento no MongoDB")
     
     class Config:
-        """Configuração do Pydantic"""
-        populate_by_name = True  # Permite usar tanto _id quanto id
+        populate_by_name = True
         from_attributes = True
 
 
 class CardImportRequest(BaseModel):
-    """Schema para requisição de importação de carta"""
     name: str = Field(..., description="Nome exato da carta para buscar na Scryfall")
     
     class Config:
@@ -69,7 +60,6 @@ class CardImportRequest(BaseModel):
 
 
 class CardSearchRequest(BaseModel):
-    """Schema para busca de cartas com filtros"""
     name: Optional[str] = Field(None, description="Buscar por nome (busca parcial)")
     colors: Optional[List[str]] = Field(None, description="Filtrar por cores (ex: ['R', 'U'])")
     type_line: Optional[str] = Field(None, description="Filtrar por tipo (ex: 'Creature')")
@@ -89,9 +79,40 @@ class CardSearchRequest(BaseModel):
 
 
 class CardListResponse(BaseModel):
-    """Schema de resposta para lista de cartas"""
     total: int = Field(..., description="Total de cartas encontradas")
     limit: int = Field(..., description="Limite de resultados")
     skip: int = Field(..., description="Resultados pulados")
     cards: List[CardResponse] = Field(..., description="Lista de cartas")
+
+
+class CardBulkImportRequest(BaseModel):
+    names: List[str] = Field(..., min_items=1, max_items=100, description="Lista de nomes de cartas para importar (máximo 100)")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "names": ["Lightning Bolt", "Counterspell", "Dark Ritual"]
+            }
+        }
+
+
+class CardBulkImportResponse(BaseModel):
+    total: int = Field(..., description="Total de cartas processadas")
+    success: int = Field(..., description="Número de cartas importadas com sucesso")
+    failed: int = Field(..., description="Número de cartas que falharam")
+    successful_cards: List[CardResponse] = Field(..., description="Cartas importadas com sucesso")
+    failed_cards: List[dict] = Field(..., description="Cartas que falharam com motivo do erro")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "total": 3,
+                "success": 2,
+                "failed": 1,
+                "successful_cards": [],
+                "failed_cards": [
+                    {"name": "Invalid Card", "error": "Card not found"}
+                ]
+            }
+        }
 
