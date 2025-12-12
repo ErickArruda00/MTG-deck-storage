@@ -2,7 +2,7 @@
 
 API REST para gerenciar banco de cartas e decks de Magic: The Gathering. O sistema permite importar cartas da API Scryfall, criar e gerenciar decks, e realizar buscas avançadas.
 
-## 🚀 Tecnologias
+## Tecnologias
 
 - **FastAPI** - Framework web moderno e rápido para Python
 - **MongoDB** - Banco de dados NoSQL para armazenamento flexível
@@ -11,12 +11,12 @@ API REST para gerenciar banco de cartas e decks de Magic: The Gathering. O siste
 - **Motor** - Driver assíncrono para MongoDB
 - **Pydantic** - Validação de dados e schemas
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 - Docker e Docker Compose instalados
 - Python 3.9+ (para desenvolvimento local)
 
-## 🔧 Instalação
+## Instalação
 
 1. Clone o repositório:
 ```bash
@@ -42,13 +42,13 @@ docker-compose up -d
 
 A API estará disponível em `http://localhost:8000`
 
-## 📚 Documentação Interativa
+## Documentação Interativa
 
 Após iniciar a API, acesse:
 - **Swagger UI**: `http://localhost:8000/docs`
 - **ReDoc**: `http://localhost:8000/redoc`
 
-## 🔑 Endpoints
+## Endpoints
 
 ### Status da API
 
@@ -66,7 +66,7 @@ Retorna o status da API e contadores.
 
 ---
 
-## 🃏 Endpoints de Cartas
+## Endpoints de Cartas
 
 ### `GET /cards/test`
 Testa a conexão com MongoDB.
@@ -205,7 +205,7 @@ Retorna o total de cartas no banco.
 
 ---
 
-## 📦 Endpoints de Decks
+## Endpoints de Decks
 
 ### `POST /decks/`
 Cria um novo deck.
@@ -362,7 +362,7 @@ Deleta um deck pelo nome.
 
 ---
 
-## 🎴 Gerenciamento de Cartas em Decks
+## Gerenciamento de Cartas em Decks
 
 ### `POST /decks/{deck_id}/cards`
 Adiciona ou atualiza uma carta no deck.
@@ -392,7 +392,7 @@ Remove uma carta do deck.
 
 ---
 
-## 📤 Exportação de Decks
+## Exportação de Decks
 
 ### `GET /decks/{deck_id}/export`
 Exporta um deck em formato de texto (`[quantidade] [nome]`).
@@ -434,7 +434,7 @@ Exporta todos os decks em formato JSON (backup completo).
 
 ---
 
-## 📊 Schemas Principais
+## Schemas Principais
 
 ### Card
 ```json
@@ -491,7 +491,7 @@ Exporta todos os decks em formato JSON (backup completo).
 
 ---
 
-## ⚙️ Variáveis de Ambiente
+## Variáveis de Ambiente
 
 | Variável | Descrição | Padrão |
 |----------|-----------|--------|
@@ -504,7 +504,7 @@ Exporta todos os decks em formato JSON (backup completo).
 
 ---
 
-## 🛠️ Comandos Úteis
+## Comandos Úteis
 
 ### Iniciar os containers
 ```bash
@@ -539,7 +539,7 @@ http://localhost:8081
 
 ---
 
-## 🔍 Validações e Regras
+## Validações e Regras
 
 ### Cartas
 - `scryfall_id` é único e obrigatório
@@ -559,7 +559,7 @@ http://localhost:8081
 
 ---
 
-## 🐛 Códigos de Erro
+## Códigos de Erro
 
 | Código | Descrição |
 |--------|-----------|
@@ -572,7 +572,7 @@ http://localhost:8081
 
 ---
 
-## 📝 Notas Importantes
+## Notas Importantes
 
 1. **Scryfall API**: A API usa a Scryfall API pública. Respeite os rate limits.
 2. **Imagens**: As URLs de imagem vêm diretamente da Scryfall e podem expirar.
@@ -582,7 +582,7 @@ http://localhost:8081
 
 ---
 
-## 🤝 Contribuindo
+## Contribuindo
 
 1. Faça um fork do projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
@@ -592,6 +592,6 @@ http://localhost:8081
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto está sob a licença MIT.
